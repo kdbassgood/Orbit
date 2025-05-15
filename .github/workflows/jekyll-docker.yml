@@ -1,0 +1,143 @@
+FROM jekyll/builder
+
+WORKDIR /srv/jekyll
+
+COPY . .
+
+RUN bundle install
+
+CMD ["jekyll", "serve", "--watch", "--host", "0.0.0.0"]
+version: '3.8'
+
+services:
+  jekyll:
+    image: jekyll/builder
+    container_name: jekyll_site
+    command: jekyll serve --watch --host 0.0.0.0
+    ports:
+      - "4000:4000"
+    volumes:
+      - .:/srv/jekyll
+      - ./vendor/bundle:/usr/local/bundle
+      title: موقعي عبر Docker
+description: موقع Jekyll بسيط باستخدام Docker
+baseurl: ""
+url: "http://localhost:4000"
+theme: minima
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8">
+    <title>{{ page.title }}</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #f5f5f5;
+      }
+      nav {
+        background-color: #333;
+        padding: 1em;
+        text-align: center;
+      }
+      nav a {
+        color: white;
+        text-decoration: none;
+        margin: 0 1em;
+        font-weight: bold;
+      }
+      nav a:hover {
+        text-decoration: underline;
+      }
+      .content {
+        max-width: 800px;
+        margin: 2em auto;
+        background: white;
+        padding: 2em;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      }
+      footer {
+        background-color: #222;
+        color: #ccc;
+        text-align: center;
+        padding: 1em;
+        margin-top: 2em;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="/">الرئيسية</a>
+      <a href="/about">من نحن</a>
+      <a href="/products">المنتجات</a>
+      <a href="/product-details">تفاصيل المنتج</a>
+      <a href="/contact">تواصل معنا</a>
+      <a href="/login">تسجيل الدخول</a>
+      <a href="/signup">إنشاء حساب</a>
+    </nav>
+    <div class="content">
+      {{ content }}
+    </div>
+    <footer>
+      جميع الحقوق محفوظة &copy; {{ site.time | date: "%Y" }}
+    </footer>
+  </body>
+</html>
+---
+layout: default
+title: الصفحة الرئيسية
+---
+
+# مرحباً بك في موقعي باستخدام Jekyll وDocker!
+هذا مثال بسيط لتشغيل Jekyll داخل حاوية Docker.
+---
+layout: default
+title: تواصل معنا
+---
+
+# تواصل معنا
+يمكنك التواصل معنا عبر البريد الإلكتروني: info@example.com
+---
+layout: default
+title: المنتجات
+---
+
+# المنتجات
+نقدم مجموعة متنوعة من المنتجات المستندة إلى الطاقة الشمسية.
+---
+layout: default
+title: تفاصيل المنتج
+---
+
+# تفاصيل المنتج
+هنا يمكنك عرض تفاصيل المنتج بشكل مفصل.
+---
+layout: default
+title: تسجيل الدخول
+---
+
+# تسجيل الدخول
+<form>
+  <label>البريد الإلكتروني:</label><br>
+  <input type="email" name="email"><br>
+  <label>كلمة المرور:</label><br>
+  <input type="password" name="password"><br>
+  <button type="submit">دخول</button>
+</form>
+---
+layout: default
+title: إنشاء حساب
+---
+
+# إنشاء حساب
+<form>
+  <label>الاسم الكامل:</label><br>
+  <input type="text" name="name"><br>
+  <label>البريد الإلكتروني:</label><br>
+  <input type="email" name="email"><br>
+  <label>كلمة المرور:</label><br>
+  <input type="password" name="password"><br>
+  <button type="submit">تسجيل</button>
+</form>
+docker-compose up
