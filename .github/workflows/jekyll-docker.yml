@@ -1,42 +1,36 @@
-name: Build and Deploy Jekyll Site
+name: Build and Deploy to Netlify
 
-# تفعيل العمل عند كل دفعة (push) إلى فرع main
 on:
   push:
     branches:
       - main
 
 jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest  # استخدام بيئة أوبونتو الحديثة لتشغيل الخطوات
+  build:
+    runs-on: ubuntu-latest
 
     steps:
-      # خطوة 1: جلب نسخة من المستودع
-      - name: Checkout repository
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0  # جلب كامل التاريخ وليس آخر دفعة فقط
+    - name: Checkout repository
+      uses: actions/checkout@v3
 
-      # خطوة 2: إعداد Docker Buildx لبناء الصور المتقدمة
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
+    - name: Setup Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 3.1
 
-      # خطوة 3: بناء صورة Docker الخاصة بموقع Jekyll من Dockerfile في المشروع
-      - name: Build Docker image for Jekyll
-        run: docker build -t jekyll-site .
+    - name: Install dependencies
+      run: |
+        gem install bundler
+        bundle install
 
-      # خطوة 4: تشغيل حاوية Docker لبناء الموقع باستخدام Jekyll داخل الحاوية
-      # يقوم بترجمة ملفات الموقع وإنتاج محتوى HTML نهائي في مجلد _site
-      - name: Build site with Jekyll inside Docker
-        run: docker run --rm -v ${{ github.workspace }}:/srv/jekyll jekyll-site jekyll build
+    - name: Build the site with Jekyll
+      run: bundle exec jekyll build
 
-      # خطوة 5: نشر محتوى مجلد _site (الموقع المبني) إلى فرع gh-pages
-      # يستخدم action جاهز للنشر على GitHub Pages تلقائياً
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}  # رمز الدخول الآمن للنشر
-          publish_dir: ./_site  # مجلد الموقع النهائي
-          publish_branch: gh-pages  # الفرع الذي سينشر عليه الموقع
-          user_name: 'github-actions[bot]'  # اسم المستخدم للنشر في السجل
-          user_email: 'github-actions[bot]@users.noreply.github.com'  # بريد المستخدم للنشر
+    - name: Deploy to Netlify
+      uses: nwtgck/actions-netlify@v1.2
+      with:
+        publish-dir: ./_site
+        production-deploy: true
+      env:
+        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
