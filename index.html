@@ -1,1 +1,143 @@
-<!-- الصفحة الرئيسية لمتجر Orbit للطاقة الشمسية. -->
+<!-- index.html --><!-- (تم إنشاؤها مسبقاً داخل صفحة solar_index_page) --><!-- products.html --><!DOCTYPE html><html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>منتجاتنا | متجر الطاقة الشمسية</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Cairo', sans-serif; margin: 0; background: #f2f2f2; }
+    header, nav, footer { text-align: center; padding: 20px; background: #0077b6; color: white; }
+    nav a { margin: 0 15px; color: white; text-decoration: none; }
+    .products { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 40px; }
+    .product { background: white; padding: 15px; border-radius: 10px; text-align: center; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+    .product img { width: 100%; height: 180px; object-fit: cover; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <header><h1>منتجاتنا</h1></header>
+  <nav>
+    <a href="index.html">الرئيسية</a>
+    <a href="products.html">المنتجات</a>
+    <a href="shopping_cart.html">السلة</a>
+    <a href="login.html">دخول</a>
+  </nav>
+  <section class="products">
+    <div class="product">
+      <img src="https://images.unsplash.com/photo-1594007654729-407eedc4be07" alt="لوح شمسي">
+      <h3>لوح شمسي 550 واط</h3>
+      <p>كفاءة عالية</p>
+      <a href="product_details.html">عرض التفاصيل</a>
+    </div>
+    <div class="product">
+      <img src="https://images.unsplash.com/photo-1621943727613-6983f2e4f647" alt="بطارية">
+      <h3>بطارية ليثيوم</h3>
+      <p>عمر افتراضي طويل</p>
+      <a href="product_details.html">عرض التفاصيل</a>
+    </div>
+  </section>
+  <footer>&copy; 2025 متجر الطاقة الشمسية</footer>
+</body>
+</html><!-- product_details.html --><!DOCTYPE html><html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>تفاصيل المنتج</title>
+  <style>
+    body { font-family: Cairo, sans-serif; margin: 0; padding: 20px; background: #f6f6f6; }
+    .container { max-width: 800px; margin: auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+    img { width: 100%; border-radius: 8px; }
+    h1 { margin-top: 20px; }
+    p { color: #555; line-height: 1.6; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="https://images.unsplash.com/photo-1594007654729-407eedc4be07" alt="لوح شمسي">
+    <h1>لوح شمسي 550 واط</h1>
+    <p>لوح عالي الكفاءة بقدرة 550 واط مناسب للأنظمة المنزلية والتجارية. مقاوم للماء والغبار، ضمان لمدة 10 سنوات.</p>
+    <button onclick="window.location.href='shopping_cart.html'">أضف إلى السلة</button>
+  </div>
+</body>
+</html><!-- shopping_cart.html --><!DOCTYPE html><html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>سلة المشتريات</title>
+  <style>
+    body { font-family: Cairo, sans-serif; background: #f4f4f4; padding: 20px; }
+    .cart { max-width: 800px; margin: auto; background: white; padding: 30px; border-radius: 10px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { text-align: center; padding: 15px; border-bottom: 1px solid #ddd; }
+    tfoot td { font-weight: bold; }
+  </style>
+</head>
+<body>
+  <div class="cart">
+    <h1>سلة المشتريات</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>المنتج</th>
+          <th>الكمية</th>
+          <th>السعر</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>لوح شمسي 550 واط</td>
+          <td>1</td>
+          <td>1200 جنيه</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="2">الإجمالي</td>
+          <td>1200 جنيه</td>
+        </tr>
+      </tfoot>
+    </table>
+    <button>إتمام الشراء</button>
+  </div>
+</body>
+</html><!-- login.html --><!DOCTYPE html><html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>تسجيل الدخول</title>
+  <style>
+    body { font-family: Cairo, sans-serif; background: #e9ecef; display: flex; justify-content: center; align-items: center; height: 100vh; }
+    .login-box { background: white; padding: 40px; border-radius: 10px; width: 300px; box-shadow: 0 0 15px rgba(0,0,0,0.1); }
+    input { width: 100%; padding: 10px; margin: 10px 0; }
+    button { width: 100%; padding: 10px; background: #0077b6; color: white; border: none; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <div class="login-box">
+    <h2>تسجيل الدخول</h2>
+    <form>
+      <input type="text" placeholder="البريد الإلكتروني" required>
+      <input type="password" placeholder="كلمة المرور" required>
+      <button type="submit">دخول</button>
+    </form>
+    <p>ليس لديك حساب؟ <a href="signup.html">سجّل الآن</a></p>
+  </div>
+</body>
+</html><!-- signup.html --><!DOCTYPE html><html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>إنشاء حساب</title>
+  <style>
+    body { font-family: Cairo, sans-serif; background: #f1f1f1; display: flex; justify-content: center; align-items: center; height: 100vh; }
+    .signup-box { background: white; padding: 40px; border-radius: 10px; width: 320px; box-shadow: 0 0 15px rgba(0,0,0,0.1); }
+    input { width: 100%; padding: 10px; margin: 10px 0; }
+    button { width: 100%; padding: 10px; background: #00b4d8; color: white; border: none; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <div class="signup-box">
+    <h2>إنشاء حساب</h2>
+    <form>
+      <input type="text" placeholder="الاسم الكامل" required>
+      <input type="email" placeholder="البريد الإلكتروني" required>
+      <input type="password" placeholder="كلمة المرور" required>
+      <button type="submit">سجّل</button>
+    </form>
+  </div>
+</body>
+</html>
